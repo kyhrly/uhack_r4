@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 27, 2016 at 08:18 PM
+-- Generation Time: Aug 27, 2016 at 09:01 PM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 5.6.20
 
@@ -92,7 +92,7 @@ CREATE TABLE `tbllawyer` (
 --
 
 INSERT INTO `tbllawyer` (`lawyerID`, `lawyerUsername`, `lawyerPassword`, `lawyerLastName`, `lawyerFirstName`, `lawyerMiddleName`, `firmAssociatedTo`, `firmAddress`, `specialization`, `locationLawyers`, `casesWon`, `status`) VALUES
-(5, 'lawyer', 'sample', 'Santiago', 'Mirriam', 'Defensor', '4', '5', 'Administrative', '7', '', '0');
+(5, 'lawyer', 'sample', 'Santiago', 'Mirriam', 'Defensor', 'Senators'' Law Firm', 'Region 1, PH', 'Administrative', 'Region 1', '20', '0');
 
 -- --------------------------------------------------------
 
