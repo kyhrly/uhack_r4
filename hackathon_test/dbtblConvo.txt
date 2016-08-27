@@ -1,0 +1,8 @@
+tblConversation tbl name
+fields
+convoID
+userID
+lawyerID
+message
+timestamp varchar
+

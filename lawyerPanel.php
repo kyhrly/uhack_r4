@@ -11,7 +11,7 @@
 
 <form action="" method="POST">
 	<?php
-	$getPostsForLawyer =  mysqli_query($conn, "SELECT * FROM tblpost JOIN tblusers USING (userID) WHERE postSpecialization LIKE '%$_SESSION[specialization]%'  ");
+	$getPostsForLawyer =  mysqli_query($conn, "SELECT * FROM tblpost JOIN tblusers USING (userID) WHERE postSpecialization LIKE '%$_SESSION[specialization]%' ORDER BY tblpost.postID ");
 	while($row = mysqli_fetch_assoc($getPostsForLawyer))
 	{
 	?>
@@ -19,13 +19,40 @@
 			<?php echo $row['firstName']; ?><br>
 			<?php echo $row['postDescription']; ?> <br>
 			<?php echo $row['postTimeStamp']; ?><br>
-			<button type="submit">BID</button>
+			<button type="submit" value="<?php echo $row['postID']; ?>" name="bid">BID</button>
+			<br>
+			<?php 
+			$getBiddings = mysqli_query($conn, "SELECT * FROM tblbidding JOIN tbllawyer USING (lawyerID) WHERE postID = '$row[postID]' " );
+			while($row = mysqli_fetch_assoc($getBiddings))
+			{
+			?>
+			<div>
+				<?php echo $row['lawyerLastName'] .", " .$row['lawyerFirstName'] ." " .$row['lawyerMiddleName']; ?> <br> 
+				<?php echo $row['bidMessage']; ?> <br>
+				<?php echo $row['bidTime']; ?>
+			</div>
+			<br>
+			<?php
+			}
+			
+			?>
 		</div>
 		<hr>
 	<?php
 	}
 	?>
 </form>
+
+
+<?php
+
+if(isset($_POST['bid']))
+{	
+	$_SESSION['postID'] = $_POST['bid'];
+	header('Location: lawyerSingleFile.php');
+}
+
+?>
 <!--
 
 <option value = 'Administrative'>Administrative</option>

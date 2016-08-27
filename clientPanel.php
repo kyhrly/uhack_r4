@@ -39,8 +39,8 @@ PREVIOUS POSTS
 		<div>
 			<?php echo $row['postDescription'] ."<br>" .$row['postTimeStamp']; ?>
 		</div>
-			<input type = 'submit' value = 'VIEW' name = 'submit'>
-			<input type = 'hidden' value = '<?php echo $row['postID']; ?>' name = 'client_id'>
+
+			<button type = 'submit' value = '<?php echo $row['postID']; ?>' name = 'submit'> View</button>
 		<br>
 		<hr>
 	<?php
