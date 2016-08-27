@@ -17,6 +17,7 @@
 		$username = $_POST['username'];
 		$password = $_POST['password'];
 
+
 		$validate = mysqli_query($conn,
 					" SELECT * FROM tbllawyer WHERE lawyerUsername = '$username' AND lawyerPassword = '$password' ");
 		if(mysqli_num_rows($validate) == 0)
@@ -24,18 +25,30 @@
 			$secondValidate = mysqli_query($conn,
 					" SELECT * FROM tblusers WHERE userUsername = '$username' AND userPassword = '$password' ");
 			if(mysqli_num_rows($secondValidate) == 0)
-				echo "Invalid password";
-			else 
 			{
-				$_SESSION['usertype'] = "client";
-				echo $_SESSION['usertype'];
+				$thirdValidate = mysqli_query($conn,
+					" SELECT * FROM tbladmin WHERE adminUsername = '$username' AND adminPassword = '$password' ");
+				if(mysqli_num_rows($thirdValidate)==0)
+				{
+					echo "invalid password!";
+				}
+				else
+				{
+					//$_SESSION['usertype'] = "admin";
+					echo "admin"; //$_SESSION['usertype'];
+				}
+			}
+			else 
+			{	
+				//$_SESSION['usertype'] = "client";
+				echo "client"; //$_SESSION['usertype'];
 			}
 
 		}
 		else
 		{
-			$_SESSION['usertype'] = "lawyer";
-			echo $_SESSION['usertype'];
+			//$_SESSION['usertype'] = "lawyer";
+			echo "lawyer"; //$_SESSION['usertype'];
 		}
 	}
 

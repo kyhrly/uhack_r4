@@ -34,7 +34,7 @@
 
 
 <?php 
-
+	
 	if(isset($_POST['registerLawyer']))
 	{
 		$lawyerUsername = $_POST['lawyerUsername'];
@@ -115,7 +115,7 @@
 					'$middleName',
 					'$nickName',
 					'$locationUsers',
-					'0'
+					'1'
 					)
 				");
 		$reg = mysqli_query($conn,$registerClient);
