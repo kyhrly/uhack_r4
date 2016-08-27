@@ -1,4 +1,4 @@
-<?php include ('config/config.php'); ?>
+<?php include ('HEADER.php'); ?>
 
 <form action="" method="POST">
 

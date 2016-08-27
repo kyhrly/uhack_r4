@@ -1,5 +1,15 @@
-<?php include ('config/config.php'); ?>
-
+<?php include ('HEADER.php'); 
+	
+	if(isset($_SESSION['usertype'])==true)
+	{
+		if($_SESSION['usertype']=="client")
+			header("location:clientPanel.php");
+		if($_SESSION['usertype']=="lawyer")
+			header("location:lawyerPanel.php");
+	}
+	else
+	{
+	?>
 
 <form action="" method="POST">
 	<input type="text" name="username">
@@ -40,16 +50,29 @@
 			}
 			else 
 			{	
-				//$_SESSION['usertype'] = "client";
-				echo "client"; //$_SESSION['usertype'];
+				while($row = mysqli_fetch_assoc($secondValidate))
+				{
+					$_SESSION['userID'] = $row['userID'];
+					$_SESSION['userName'] = $row['lastName'] .", " .$row['firstnName'] ." " .$row['middleName'];
+					
+				}
+				$_SESSION['usertype'] = "client";
+					header("Location: clientPanel.php");
 			}
 
 		}
 		else
 		{
-			//$_SESSION['usertype'] = "lawyer";
-			echo "lawyer"; //$_SESSION['usertype'];
+			while($row = mysqli_fetch_assoc($validate))
+				{
+					$_SESSION['userID'] = $row['lawyerID'];
+					$_SESSION['userName'] = $row['lawyerLastName'] .", " .$row['lawyerFirstName'] ." " .$row['lawyerMiddleName'];
+					$_SESSION['specialization'] = $row['specialization'];
+					
+				}
+				$_SESSION['usertype'] = "lawyer";
+					header("Location: lawyerPanel.php");
 		}
 	}
-
+}
 ?>
