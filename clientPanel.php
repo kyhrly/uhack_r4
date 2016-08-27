@@ -1,5 +1,5 @@
-<?php include ('HEADER.php'); ?>
-<?php 
+<?php include ('HEADER.php'); 
+
 	if(isset($_SESSION['usertype'])==false)
 		header("location:index.php");
 	
@@ -29,7 +29,7 @@
 	</table>
 </form>
 
-<form action="clientSingleFile.php" method="POST">
+<form action="" method="POST">
 PREVIOUS POSTS
 	<?php 
 	$getUserPosts = mysqli_query($conn, " SELECT * FROM tblpost WHERE userID LIKE '$_SESSION[userID]'  ");
@@ -37,10 +37,27 @@ PREVIOUS POSTS
 	{
 	?>
 		<div>
-			<?php echo $row['postDescription'] ."<br>" .$row['postTimeStamp']; ?>
+			<?php echo $row['postDescription'] ."<br>" .$row['postTimeStamp']; ?> <button type = 'submit' value = '<?php echo $row['postID']; ?>' name = 'view'> View</button>
+			<hr>
+			<div>
+				<?php 
+				$getBiddings = mysqli_query($conn, "SELECT * FROM tblbidding JOIN tbllawyer USING (lawyerID) WHERE postID = '$row[postID]' " );
+				while($row2 = mysqli_fetch_assoc($getBiddings))
+				{
+				?>
+				<div>
+					<button type="submit" value="<?php echo $row2['lawyerID']; ?>" name="viewProfile"><?php echo $row2['lawyerLastName'] .", " .$row2['lawyerFirstName'] ." " .$row2['lawyerMiddleName']; ?></button> <br> 
+					<?php echo $row2['bidMessage']; ?> <br>
+					<?php echo $row2['bidTime']; ?>
+				</div>
+				<br>
+				<?php
+				}
+				?>
+			</div>
 		</div>
 
-			<button type = 'submit' value = '<?php echo $row['postID']; ?>' name = 'submit'> View</button>
+			
 		<br>
 		<hr>
 	<?php
@@ -66,5 +83,16 @@ PREVIOUS POSTS
 
 	}
 
+	if(isset($_POST['view']))
+	{
+		$_SESSION['postID'] = $_POST['view']; 	
+		//echo $_SESSION['postID'];
+		header('Location: clientSingleFile.php');
+	}
+	if(isset($_POST['viewProfile']))
+	{
+		$_SESSION['viewProfile'] = $_POST['viewProfile'];
+		header('Location: lawyerProfile.php');
+	}
 
 ?>

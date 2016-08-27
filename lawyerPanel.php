@@ -23,18 +23,17 @@
 			<br>
 			<?php 
 			$getBiddings = mysqli_query($conn, "SELECT * FROM tblbidding JOIN tbllawyer USING (lawyerID) WHERE postID = '$row[postID]' " );
-			while($row = mysqli_fetch_assoc($getBiddings))
+			while($row2 = mysqli_fetch_assoc($getBiddings))
 			{
 			?>
 			<div>
-				<?php echo $row['lawyerLastName'] .", " .$row['lawyerFirstName'] ." " .$row['lawyerMiddleName']; ?> <br> 
-				<?php echo $row['bidMessage']; ?> <br>
-				<?php echo $row['bidTime']; ?>
+				<?php echo $row2['lawyerLastName'] .", " .$row2['lawyerFirstName'] ." " .$row2['lawyerMiddleName']; ?> <br> 
+				<?php echo $row2['bidMessage']; ?> <br>
+				<?php echo $row2['bidTime']; ?>
 			</div>
 			<br>
 			<?php
 			}
-			
 			?>
 		</div>
 		<hr>
@@ -46,11 +45,12 @@
 
 <?php
 
-if(isset($_POST['bid']))
-{	
-	$_SESSION['postID'] = $_POST['bid'];
-	header('Location: lawyerSingleFile.php');
-}
+	if(isset($_POST['bid']))
+	{	
+		$_SESSION['postID'] = $_POST['bid'];
+		header('Location: lawyerSingleFile.php');
+	}
+
 
 ?>
 <!--
