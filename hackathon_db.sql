@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 27, 2016 at 09:01 PM
+-- Generation Time: Aug 27, 2016 at 10:43 PM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 5.6.20
 
@@ -65,6 +65,34 @@ INSERT INTO `tblbidding` (`bidID`, `postID`, `lawyerID`, `bidMessage`, `bidTime`
 (2, '11', '5', 'bid ko lang ah', '2016-08-27 17:53:41'),
 (3, '11', '5', 'test', '2016-08-27 17:53:44'),
 (4, '11', '5', 'BID KO PA', '2016-08-27 18:09:55');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tblconversation`
+--
+
+CREATE TABLE `tblconversation` (
+  `convoID` int(11) NOT NULL,
+  `sender` text NOT NULL,
+  `userID` text NOT NULL,
+  `lawyerID` text NOT NULL,
+  `message` text NOT NULL,
+  `timestamp` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tblconversation`
+--
+
+INSERT INTO `tblconversation` (`convoID`, `sender`, `userID`, `lawyerID`, `message`, `timestamp`) VALUES
+(12, 'client', '3', '5', 'oy', '2016-08-28 04:29:59'),
+(13, 'client', '3', '5', 'test', '2016-08-28 04:31:33'),
+(14, 'client', '3', '5', 'test', '2016-08-28 04:31:47'),
+(15, 'client', '3', '5', 'test', '2016-08-28 04:31:55'),
+(16, 'client', '3', '5', 'heheheh', '2016-08-28 04:32:00'),
+(17, 'client', '3', '5', 'hi', '2016-08-28 04:32:07'),
+(18, 'client', '3', '5', 'hehehe', '2016-08-28 04:32:10');
 
 -- --------------------------------------------------------
 
@@ -159,6 +187,12 @@ ALTER TABLE `tblbidding`
   ADD PRIMARY KEY (`bidID`);
 
 --
+-- Indexes for table `tblconversation`
+--
+ALTER TABLE `tblconversation`
+  ADD PRIMARY KEY (`convoID`);
+
+--
 -- Indexes for table `tbllawyer`
 --
 ALTER TABLE `tbllawyer`
@@ -190,6 +224,11 @@ ALTER TABLE `tbladmin`
 --
 ALTER TABLE `tblbidding`
   MODIFY `bidID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+--
+-- AUTO_INCREMENT for table `tblconversation`
+--
+ALTER TABLE `tblconversation`
+  MODIFY `convoID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 --
 -- AUTO_INCREMENT for table `tbllawyer`
 --

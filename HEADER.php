@@ -15,7 +15,7 @@
 	?>
 		<ul>
 			<li><a href="index.php">Home</a></li>
-			<li><a href="#"><?php echo $_SESSION['userName']; ?></a></li>
+			<li><a href="<?php if($_SESSION['usertype']=='lawyer') echo 'myprofile.php'; ?>"><?php echo $_SESSION['userName']; ?></a></li>
 			<li><a href="LOGOUT.php">Logout</a></li>
 		</ul>	
 	<?php

@@ -1,12 +1,16 @@
 <?php include ('HEADER.php'); ?>
 
 <?php 
-$getProfile = mysqli_query($conn, " SELECT * FROM tbllawyer WHERE lawyerID = '$_SESSION[viewProfile]' ");
+
+if(isset($_SESSION['usertype'])==false)
+		header("location:index.php");
+
+$getProfile = mysqli_query($conn, " SELECT * FROM tbllawyer WHERE lawyerID = '$_SESSION[userID]' ");
 while($row = mysqli_fetch_assoc($getProfile))
 {
 ?>
 	<?php echo $row['lawyerLastName'] .", " .$row['lawyerFirstName'] ." " .$row['lawyerMiddleName']; ?> 
-	<button onclick="ToggaleMessage();">Message</button>
+	<button onclick="ToggaleMessage();">Messages</button>
 	<br>
 	<?php echo $row['firmAssociatedTo']; ?> - <?php echo $row['firmAddress']; ?>
 	<br>
@@ -21,12 +25,7 @@ while($row = mysqli_fetch_assoc($getProfile))
 <div id="message">
 	<div class="" id="messages">
 	
-
 	</div>
-	<input type="text" id="messageToSend">
-	<br>
-	<button onclick="sendMessage();">Send</button>
-
 </div>
 
 
@@ -50,7 +49,7 @@ $(document).ready(function() {
 	$('#message').hide();
 	setInterval(function(){
 			
-		$.post("ajax/viewMessages.php",{
+		$.post("ajax/viewMessageLawyer.php",{
 			//'sec': a
 			},
 		function(showCreate) { document.getElementById("messages").innerHTML=showCreate; });
@@ -78,7 +77,7 @@ function liveViewMessage()
 {
 	setInterval(function(){
 			
-		$.post("ajax/viewMessages.php",//{
+		$.post("ajax/viewMessagesLawyer.php",//{
 			//'sec': a
 			//},
 		function(showCreate) { document.getElementById("#messages").innerHTML=showCreate; });
