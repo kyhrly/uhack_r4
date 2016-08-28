@@ -6,8 +6,7 @@
 	<title>KATARUNGAN</title>
 </head>
 
-<link rel="stylesheet" href="assets/material/material.min.css">
-<script src="assets/material/material.min.js"></script>
+
 
 <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
 <script src="assets/js/jquery.min.js"></script>
@@ -15,6 +14,9 @@
 <script src="bootstrap/js/bootstrap.min.js"></script>
 
 <script src="bootstrap/js/jquery-ui.min.js"></script>
+
+<link rel="stylesheet" href="assets/material/material.min.css">
+<script src="assets/material/material.min.js"></script>
 <style>
 body {
   background: url('images/bg_2880.jpg') no-repeat center center fixed;

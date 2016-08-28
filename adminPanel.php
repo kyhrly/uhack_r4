@@ -1,5 +1,13 @@
 <?php include ('HEADER.php'); ?>
-
+<style>
+body{
+	color:white;
+}
+.panel{
+	background: url('images/tile.png');
+	padding:10px;
+}
+</style>
 <div class="container">
 
 <h4 style="color:white;">Lawyer Applicants</h4>
@@ -7,6 +15,7 @@
 	<tr>
 		<td>Username</td>
 		<td>Status</td>
+		<td>Won Cases</td>
 		<td>Name</td>
 		<td>Specialization</td>
 		<td>Firm</td>
@@ -24,6 +33,7 @@
 				<td><?php echo $lawyers['lawyerUsername']; ?></td>
 				<td><?php if($lawyers['status']==0) echo "Pending / Blocked"; else echo "Active";  ?></td>
 				<td><?php echo $lawyers['lawyerUsername'] .", " .$lawyers['lawyerFirstName'] ." " .$lawyers['lawyerMiddleName']; ?></td>
+				<td><?php echo $lawyers['casesWon']; ?></td>
 				<td><?php echo $lawyers['specialization']; ?></td>
 				<td><?php echo $lawyers['firmAssociatedTo']; ?></td>
 				<td><?php echo $lawyers['locationLawyers']; ?></td>
@@ -32,14 +42,15 @@
 					if($lawyers['status']==0)
 					{
 					?>
-						<button type="submit" name="accept" value="<?php echo $lawyers['lawyerID']; ?>">Accept</button>
-						<button type="submit" name="review" value="<?php echo $lawyers['lawyerID']; ?>">Review</button>
+						<button class="btn btn-default" type="submit" name="accept" value="<?php echo $lawyers['lawyerID']; ?>">Accept</button>
+						<button class="btn btn-default" type="submit" name="review" value="<?php echo $lawyers['lawyerID']; ?>">Review</button>
 					<?php 
 					}
 					else
 					{
 					?>
-						<button type="submit" name="block" value="<?php echo $lawyers['lawyerID']; ?>">Block</button>
+						<button class="btn btn-default" type="submit" name="block" value="<?php echo $lawyers['lawyerID']; ?>">Block</button>
+						<button class="btn btn-default" type="submit" name="add" value="<?php echo $lawyers['lawyerID']; ?>">Add Won Cases</button>
 					<?php
 					}
 					?>
@@ -84,7 +95,7 @@
 				<td><?php echo $lawyers['firmAssociatedTo']; ?></td>
 				<td><?php echo $lawyers['locationLawyers']; ?></td>
 				<td>
-					<button type="submit" name="accept" value="<?php echo $lawyers['lawyerID']; ?>">Accept</button>
+					<button class="btn btn-default" type="submit" name="accept" value="<?php echo $lawyers['lawyerID']; ?>">Accept</button>
 				</td>
 			</tr>
 		<?php 
@@ -120,6 +131,11 @@
 	if(isset($_POST['block']))
 	{
 		mysqli_query($conn," UPDATE tbllawyer SET status = '0' WHERE lawyerID =$_POST[block] ");
+		header("Refresh:0");
+	}
+	if(isset($_POST['add']))
+	{
+		mysqli_query($conn," UPDATE tbllawyer SET casesWon = casesWon + 1 WHERE lawyerID =$_POST[add] ");
 		header("Refresh:0");
 	}
 

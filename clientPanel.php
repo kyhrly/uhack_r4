@@ -29,8 +29,7 @@ body{
 		<option value = 'Immigration Law'>Immigration Law</option>
 		<option value = 'Intellectual Property Law'>Intellectual Property Law</option>
 		<option value = 'International Law'>International Law</option>
-		<option value = 'Labour And Employment Law'>International Law</option>
-		<option value = 'International Law'>International Law</option>
+		<option value = 'Labour And Employment Law'>Labour And Employment Law</option>
 		</select>
 		<input style="margin-top:10px;" type = 'hidden' required="" value = '//kylepalagaydito un value ng id' name = 'client_id'>
 		<input style="margin-top:10px;" class="btn btn-default" type = 'submit' value = 'POST' name = 'submit'>
@@ -56,7 +55,7 @@ body{
 				{
 				?>
 				<div>
-					<button class="btn btn-default" type="submit" value="<?php echo $row2['lawyerID']; ?>" name="viewProfile"><?php echo $row2['lawyerLastName'] .", " .$row2['lawyerFirstName'] ." " .$row2['lawyerMiddleName']; ?></button> <br> 
+					<button class="btn btn-default" type="submit" value="<?php echo $row2['lawyerID']; ?>" name="viewProfile"><?php echo $row2['lawyerLastName'] .", " .$row2['lawyerFirstName'] ." " .$row2['lawyerMiddleName']; ?></button> <i class="glyphicon glyphicon-uploads"></i> Cases Won : <b><?php echo $row2['casesWon']; ?></b> <br> 
 					<?php echo $row2['bidMessage']; ?> <br>
 					<?php echo $row2['bidTime']; ?>
 				</div>

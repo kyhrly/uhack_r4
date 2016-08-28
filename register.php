@@ -131,7 +131,7 @@
 									<div class="form-group">
 										<div class="input-group margin-bottom-sm">
   											<span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
-										<input type="text" name="nickName" id="location" tabindex="6" class="form-control" placeholder="Specialization">
+										<input type="text" name="nickName" id="location" tabindex="6" class="form-control" placeholder="Nick Name">
 									</div>
 									</div>
 									<div class="form-group">
@@ -204,7 +204,18 @@
 									<div class="form-group">
 											<div class="input-group margin-bottom-sm">
   											<span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
-										<input type="text" name="specialization" id="location" tabindex="9" class="form-control" placeholder="Specialization">
+										<select class="form-control" name="specialization" id="">
+											<option value = 'Administrative'>Administrative</option>
+											<option value = 'Civil Litigation'>Civil Litigation</option>
+											<option value = 'Constitutional Law'>Constitutional Law</option>
+											<option value = 'Corporate and Commercial Law'>Corporate and Commercial Law</option>
+											<option value = 'Environmental Law'>Environmental Law</option>
+											<option value = 'Family Law'>Family Law</option>
+											<option value = 'Immigration Law'>Immigration Law</option>
+											<option value = 'Intellectual Property Law'>Intellectual Property Law</option>
+											<option value = 'International Law'>International Law</option>
+											<option value = 'Labour And Employment Law'>Labour And Employment Law</option>
+										</select>
 									</div>
 									</div>
 									<div class="form-group">
