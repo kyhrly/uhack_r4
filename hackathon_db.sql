@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 27, 2016 at 10:43 PM
+-- Generation Time: Aug 28, 2016 at 02:09 AM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 5.6.20
 
@@ -61,10 +61,8 @@ CREATE TABLE `tblbidding` (
 --
 
 INSERT INTO `tblbidding` (`bidID`, `postID`, `lawyerID`, `bidMessage`, `bidTime`) VALUES
-(1, '11', '5', 'test', '2016-08-27 17:52:00'),
-(2, '11', '5', 'bid ko lang ah', '2016-08-27 17:53:41'),
-(3, '11', '5', 'test', '2016-08-27 17:53:44'),
-(4, '11', '5', 'BID KO PA', '2016-08-27 18:09:55');
+(1, '11', '5', 'I could help you for a price of 2,00php', '2016-08-27 23:01:24'),
+(2, '11', '5', 'If you want, you could just pm me', '2016-08-27 23:01:35');
 
 -- --------------------------------------------------------
 
@@ -92,7 +90,22 @@ INSERT INTO `tblconversation` (`convoID`, `sender`, `userID`, `lawyerID`, `messa
 (15, 'client', '3', '5', 'test', '2016-08-28 04:31:55'),
 (16, 'client', '3', '5', 'heheheh', '2016-08-28 04:32:00'),
 (17, 'client', '3', '5', 'hi', '2016-08-28 04:32:07'),
-(18, 'client', '3', '5', 'hehehe', '2016-08-28 04:32:10');
+(18, 'client', '3', '5', 'hehehe', '2016-08-28 04:32:10'),
+(19, 'lawyer', '5', '5', 'test', '2016-08-28 04:56:40'),
+(22, 'lawyer', '', '5', 'test', '2016-08-28 05:06:14'),
+(23, 'lawyer', '3', '5', '2', '2016-08-28 05:11:00'),
+(24, 'client', '3', '5', 'test', '2016-08-28 05:12:28'),
+(25, 'lawyer', '3', '5', 'ow', '2016-08-28 05:12:31'),
+(26, 'client', '3', '5', 'baket?', '2016-08-28 05:12:37'),
+(27, 'client', '3', '5', '', '2016-08-28 05:12:37'),
+(28, 'lawyer', '3', '5', 'test', '2016-08-28 05:12:40'),
+(29, 'client', '3', '5', 'test', '2016-08-28 07:17:24'),
+(30, 'client', '3', '5', 'test', '2016-08-28 07:21:12'),
+(31, 'lawyer', '3', '5', 'test', '2016-08-28 07:49:49'),
+(32, 'lawyer', '3', '5', 'I can help you', '2016-08-28 07:52:57'),
+(33, 'lawyer', '3', '5', 'but i need 1k', '2016-08-28 07:53:08'),
+(34, 'lawyer', '3', '5', 'hey', '2016-08-28 08:09:11'),
+(35, 'lawyer', '3', '5', 'answer please', '2016-08-28 08:09:15');
 
 -- --------------------------------------------------------
 
@@ -120,7 +133,7 @@ CREATE TABLE `tbllawyer` (
 --
 
 INSERT INTO `tbllawyer` (`lawyerID`, `lawyerUsername`, `lawyerPassword`, `lawyerLastName`, `lawyerFirstName`, `lawyerMiddleName`, `firmAssociatedTo`, `firmAddress`, `specialization`, `locationLawyers`, `casesWon`, `status`) VALUES
-(5, 'lawyer', 'sample', 'Santiago', 'Mirriam', 'Defensor', 'Senators'' Law Firm', 'Region 1, PH', 'Administrative', 'Region 1', '20', '0');
+(5, 'lawyer', 'sample', 'Santiago', 'Mirriam', 'Defensor', 'Senators'' Law Firm', 'Region 1, PH', 'Administrative', 'Region 1', '20', '1');
 
 -- --------------------------------------------------------
 
@@ -141,9 +154,31 @@ CREATE TABLE `tblpost` (
 --
 
 INSERT INTO `tblpost` (`postID`, `userID`, `postDescription`, `postTimeStamp`, `postSpecialization`) VALUES
-(11, '3', 'test lang to', '2016-08-28 00:46:23', 'Administrative'),
-(12, '3', 'test lang ulet', '2016-08-28 00:46:28', 'Administrative'),
-(13, '3', 'test last test', '2016-08-28 00:46:33', 'Administrative');
+(11, '3', 'I killed someone but it is only to defend my self, I want someone who specializes in crime to help me here.', '2016-08-28 00:46:23', 'Administrative'),
+(12, '3', 'Test case 1', '2016-08-28 00:46:28', 'Administrative'),
+(13, '3', 'Test case 2', '2016-08-28 00:46:33', 'Administrative');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tblpublish`
+--
+
+CREATE TABLE `tblpublish` (
+  `publishID` int(11) NOT NULL,
+  `userID` text NOT NULL,
+  `publishTitle` text NOT NULL,
+  `publishDescription` text NOT NULL,
+  `timestamp` text NOT NULL,
+  `status` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tblpublish`
+--
+
+INSERT INTO `tblpublish` (`publishID`, `userID`, `publishTitle`, `publishDescription`, `timestamp`, `status`) VALUES
+(1, '3', 'Help me please', 'I do not have enough money for legal aid assistance, please help me to afford my very need expenses. Someone framed me up on murder they do know that I cannot afford to hire lawyers that''s why they framed me up. I need help here, PLEASE PLEASE PLEASE', '2016-08-28 05:22:02', '1');
 
 -- --------------------------------------------------------
 
@@ -205,6 +240,12 @@ ALTER TABLE `tblpost`
   ADD PRIMARY KEY (`postID`);
 
 --
+-- Indexes for table `tblpublish`
+--
+ALTER TABLE `tblpublish`
+  ADD PRIMARY KEY (`publishID`);
+
+--
 -- Indexes for table `tblusers`
 --
 ALTER TABLE `tblusers`
@@ -223,12 +264,12 @@ ALTER TABLE `tbladmin`
 -- AUTO_INCREMENT for table `tblbidding`
 --
 ALTER TABLE `tblbidding`
-  MODIFY `bidID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `bidID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `tblconversation`
 --
 ALTER TABLE `tblconversation`
-  MODIFY `convoID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `convoID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 --
 -- AUTO_INCREMENT for table `tbllawyer`
 --
@@ -239,6 +280,11 @@ ALTER TABLE `tbllawyer`
 --
 ALTER TABLE `tblpost`
   MODIFY `postID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+--
+-- AUTO_INCREMENT for table `tblpublish`
+--
+ALTER TABLE `tblpublish`
+  MODIFY `publishID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `tblusers`
 --

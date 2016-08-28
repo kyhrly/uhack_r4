@@ -1,12 +1,24 @@
 <?php include ('HEADER.php'); ?>
 
-<?php 
+<style>
+body{
+	color:white;
+}
+.panel{
+	background: url('images/tile.png');
+	padding:10px;
+}
+</style>
+
+<div class="container panel col-md-5 col-md-offset-3">
+<?php
+
 $getProfile = mysqli_query($conn, " SELECT * FROM tbllawyer WHERE lawyerID = '$_SESSION[viewProfile]' ");
 while($row = mysqli_fetch_assoc($getProfile))
 {
 ?>
 	<?php echo $row['lawyerLastName'] .", " .$row['lawyerFirstName'] ." " .$row['lawyerMiddleName']; ?> 
-	<button onclick="ToggaleMessage();">Message</button>
+	<button class="btn btn-default" onclick="ToggaleMessage();">Message</button>
 	<br>
 	<?php echo $row['firmAssociatedTo']; ?> - <?php echo $row['firmAddress']; ?>
 	<br>
@@ -18,17 +30,26 @@ while($row = mysqli_fetch_assoc($getProfile))
 }
 ?>
 <br><br>
+
 <div id="message">
+	<h4>Chat</h4>
+	<hr>
 	<div class="" id="messages">
 	
 
 	</div>
-	<input type="text" id="messageToSend">
+	
+	<div class="row">
+	<div class="col-md-5">
+	<input class="form-control" type="text" id="messageToSend">
 	<br>
-	<button onclick="sendMessage();">Send</button>
-
+	</div>
+	<button class="btn btn-default" onclick="sendMessage();">Send</button>
+	
+	</div>
+	</div>
 </div>
-
+</div>
 
 <script src="assets/js/jquery.min.js"></script>
 <script>

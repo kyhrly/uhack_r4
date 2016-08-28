@@ -5,11 +5,21 @@
 	
 ?>
 
-<form action = '' method = 'POST'>
-	<table>
-		<tr>
-		<td>Input your comment</td><td><textarea rows = '4' cols = '50' name = 'comment' placeholder = 'Enter you Post Here'></textarea></td></tr>
-		<tr><td></td><td><select name = 'specialization'>
+<style>
+body{
+	color:white;
+}
+.panel{
+	background: url('images/tile.png');
+	padding:10px;
+}
+</style>
+<div class="container ">
+
+<div class="col-md-4 panel">
+	<form action = '' method = 'POST'>
+		<textarea class="form-control" rows = '4' cols = '50' name = 'comment' placeholder = 'Enter you Post Here'></textarea>
+		<select class="form-control" name = 'specialization' style="margin-top:10px;">
 		<option value = 'Administrative'>Administrative</option>
 		<option value = 'Civil Litigation'>Civil Litigation</option>
 		<option value = 'Constitutional Law'>Constitutional Law</option>
@@ -22,22 +32,22 @@
 		<option value = 'Labour And Employment Law'>International Law</option>
 		<option value = 'International Law'>International Law</option>
 		</select>
-		<input type = 'hidden' required="" value = '//kylepalagaydito un value ng id' name = 'client_id'>
-		<tr><td></td><td><input type = 'submit' value = 'POST' name = 'submit'></td>
-		</td>
-		</tr>
-	</table>
-</form>
+		<input style="margin-top:10px;" type = 'hidden' required="" value = '//kylepalagaydito un value ng id' name = 'client_id'>
+		<input style="margin-top:10px;" class="btn btn-default" type = 'submit' value = 'POST' name = 'submit'>
+	</form>
+</div>
 
+
+<div class="col-md-6 col-md-offset-1 ">
 <form action="" method="POST">
-PREVIOUS POSTS
+<h4>PREVIOUS POSTS</h4>
 	<?php 
 	$getUserPosts = mysqli_query($conn, " SELECT * FROM tblpost WHERE userID LIKE '$_SESSION[userID]'  ");
 	while($row = mysqli_fetch_assoc($getUserPosts))
 	{
 	?>
-		<div>
-			<?php echo $row['postDescription'] ."<br>" .$row['postTimeStamp']; ?> <button type = 'submit' value = '<?php echo $row['postID']; ?>' name = 'view'> View</button>
+		<div class="panel">
+			<?php echo $row['postDescription'] ."<br>" .$row['postTimeStamp']; ?> <button class="btn btn-default" type = 'submit' value = '<?php echo $row['postID']; ?>' name = 'view'> View</button>
 			<hr>
 			<div>
 				<?php 
@@ -46,7 +56,7 @@ PREVIOUS POSTS
 				{
 				?>
 				<div>
-					<button type="submit" value="<?php echo $row2['lawyerID']; ?>" name="viewProfile"><?php echo $row2['lawyerLastName'] .", " .$row2['lawyerFirstName'] ." " .$row2['lawyerMiddleName']; ?></button> <br> 
+					<button class="btn btn-default" type="submit" value="<?php echo $row2['lawyerID']; ?>" name="viewProfile"><?php echo $row2['lawyerLastName'] .", " .$row2['lawyerFirstName'] ." " .$row2['lawyerMiddleName']; ?></button> <br> 
 					<?php echo $row2['bidMessage']; ?> <br>
 					<?php echo $row2['bidTime']; ?>
 				</div>
@@ -64,7 +74,8 @@ PREVIOUS POSTS
 	}
 	?>
 </form>
-
+</div>
+</div>
 <?php 
 
 	if(isset($_POST['submit']))

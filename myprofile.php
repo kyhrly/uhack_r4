@@ -1,16 +1,28 @@
 <?php include ('HEADER.php'); ?>
+<style>
+body{
+	color:white;
+}
+.panel{
+	background: url('images/tile.png');
+	padding:10px;
+}
+</style>
 
+<div class="panel col-md-5 col-md-offset-3">
 <?php 
 
 if(isset($_SESSION['usertype'])==false)
 		header("location:index.php");
+
+
 
 $getProfile = mysqli_query($conn, " SELECT * FROM tbllawyer WHERE lawyerID = '$_SESSION[userID]' ");
 while($row = mysqli_fetch_assoc($getProfile))
 {
 ?>
 	<?php echo $row['lawyerLastName'] .", " .$row['lawyerFirstName'] ." " .$row['lawyerMiddleName']; ?> 
-	<button onclick="ToggaleMessage();">Messages</button>
+	<button class="btn btn-default" onclick="ToggaleMessage();">Messages</button>
 	<br>
 	<?php echo $row['firmAssociatedTo']; ?> - <?php echo $row['firmAddress']; ?>
 	<br>
@@ -27,7 +39,7 @@ while($row = mysqli_fetch_assoc($getProfile))
 	
 	</div>
 </div>
-
+</div>
 
 <script src="assets/js/jquery.min.js"></script>
 <script>
@@ -88,3 +100,13 @@ function liveViewMessage()
 
 
 </script>
+
+
+<?php
+/*
+if(isset($_POST['reply']))
+{
+header('Location: lawyerReplyPage.php');
+}
+*/
+?>

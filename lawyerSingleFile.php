@@ -4,7 +4,13 @@
 		header("location:index.php");		
 ?>
 
-
+<style>
+	.panel{
+	background: url('images/tile.png');
+	padding:10px;
+}
+</style>
+<div class="col-md-7 col-md-offset-1">
 
 <form action="" method="POST">
 	<?php
@@ -12,14 +18,16 @@
 	$result = mysqli_query($conn,$getSinglePost);
 	while($row = mysqli_fetch_assoc($result))
 	{
-	?>
-		<?php echo $row['postID']; ?>
-		<?php echo $row['lastName']; ;?>
-		<?php echo $row['postDescription']; ;?>
-		<br>
-		<input type="text" name="bidMessage" placeholder="Bid">
-		<br>
-		<button type="submit" name="bidSingle">SUBMIT</button>
+	?>	
+		<div class="panel">
+			<?php echo $row['postID']; ?>
+			<?php echo $row['lastName']; ;?>
+			<?php echo $row['postDescription']; ;?>
+			<br>
+			<input class="form-control" style="margin-top:10px;" type="text" name="bidMessage" placeholder="Bid">
+			<br>
+			<button class="btn btn-default" type="submit" name="bidSingle">Submit Bidding</button>
+		</div>
 	<?php
 	}	
 	?>
@@ -30,9 +38,9 @@
 	while($row = mysqli_fetch_assoc($getBids))
 	{
 	?>	
-		<div>
-			<?php echo $row['lawyerLastName'] .", " .$row['lawyerFirstName'] ." " .$row['lawyerMiddleName']; ?> : 
-			<?php echo $row['bidMessage']; ?> <br>
+		<div class="panel">
+			<b><?php echo $row['lawyerLastName'] .", " .$row['lawyerFirstName'] ." " .$row['lawyerMiddleName']; ?> </b> 
+			<br><?php echo $row['bidMessage']; ?> <br>
 			<?php echo $row['bidTime']; ?>
 		</div>
 		<hr>
@@ -40,7 +48,7 @@
 	}
 	?>
 
-
+</div>
 <?php 
 
 if(isset($_POST['bidSingle']))

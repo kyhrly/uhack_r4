@@ -1,6 +1,9 @@
 <?php include ('HEADER.php'); ?>
-<center>Lawyer Applicants</center>
-<table border="1">
+
+<div class="container">
+
+<h4 style="color:white;">Lawyer Applicants</h4>
+<table class="table panel" border="1">
 	<tr>
 		<td>Username</td>
 		<td>Status</td>
@@ -46,12 +49,19 @@
 		}
 		?>
 	</tr>
+	<tr>
+		<td>-</td>
+		<td>-</td>
+		<td>-</td>
+		<td>-</td>
+		<td>-</td>
+		<td>-</td>
+	</tr>
 	</form>
 </table>
 
-<hr>
-<center>Lawyers for Review</center>
-<table border="1">
+<h4 style="color: white;">Lawyers for Review</h4>
+<table class="table panel">
 	<tr>
 		<td>Username</td>
 		<td>Name</td>
@@ -81,9 +91,17 @@
 		}
 		?>
 	</tr>
+	<tr>
+		<td>-</td>
+		<td>-</td>
+		<td>-</td>
+		<td>-</td>
+		<td>-</td>
+		<td>-</td>
+	</tr>
 	</form>
 </table>
-
+</div>
 <?php 
 
 	if(isset($_POST['accept']))
